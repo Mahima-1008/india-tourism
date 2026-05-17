@@ -1,59 +1,51 @@
-import Link from 'next/link'
 import destinations from '@/data/destinations'
 
 export default async function DestinationPage({ params }) {
 
   const { id } = await params
 
-  const destination = destinations.find(
+  const allDestinations = [
+    ...destinations.northIndia,
+    ...destinations.southIndia,
+    ...destinations.westIndia,
+    ...destinations.eastIndia,
+  ]
+
+  const destination = allDestinations.find(
     (item) => item.id == id
   )
 
   if (!destination) {
-    return (
-      <h1 className="text-5xl p-10">
-        Destination Not Found
-      </h1>
-    )
+    return <h1 className="text-white p-10">Destination Not Found</h1>
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-10">
 
-      <div className="max-w-5xl mx-auto bg-white rounded-3xl overflow-hidden shadow-xl">
+    <div className="min-h-screen bg-black text-white">
 
-        <img
-          src={destination.image}
-          alt={destination.name}
-          className="w-full h-[500px] object-cover"
-        />
+      <img
+        src={destination.image}
+        alt={destination.name}
+        className="w-full h-[500px] object-cover"
+      />
 
-        <div className="p-8">
+      <div className="p-10">
 
-          <h1 className="text-5xl font-bold mb-5">
-            {destination.name}
-          </h1>
+        <h1 className="text-6xl font-bold text-orange-400 mb-6">
+          {destination.name}
+        </h1>
 
-          <p className="text-lg text-gray-600 mb-5">
-            {destination.description}
-          </p>
+        <p className="text-2xl text-gray-300 mb-6 max-w-4xl">
+          {destination.description}
+        </p>
 
-          <h2 className="text-3xl font-bold text-orange-500 mb-6">
-            ₹{destination.price}
-          </h2>
+        <p className="text-4xl font-bold text-orange-500 mb-8">
+          ₹{destination.price}
+        </p>
 
-         <Link
-  href={`/booking?destination=${destination.name}&price=${destination.price}`}
->
-
-  <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full text-lg">
-
-    Book Now
-
-  </button>
-
-</Link>
-        </div>
+        <button className="bg-orange-500 hover:bg-orange-600 px-10 py-4 rounded-full text-xl font-semibold transition">
+          Book Now
+        </button>
 
       </div>
 

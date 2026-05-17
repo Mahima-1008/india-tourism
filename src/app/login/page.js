@@ -12,9 +12,8 @@ export default function LoginPage() {
     password: '',
   })
 
-  const [loading, setLoading] = useState(false)
-
   const handleChange = (e) => {
+
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -25,84 +24,72 @@ export default function LoginPage() {
 
     e.preventDefault()
 
-    setLoading(true)
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
 
-    try {
+      headers: {
+        'Content-Type': 'application/json',
+      },
 
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
+      body: JSON.stringify(formData),
+    })
 
-      const data = await res.json()
+    const data = await res.json()
 
-      if (res.ok) {
+    if (res.ok) {
 
-        localStorage.setItem('token', data.token)
+      localStorage.setItem('token', data.token)
 
-        alert('Login Successful')
+      router.push('/dashboard')
 
-        setTimeout(() => {
-          router.push('/dashboard')
-        }, 500)
+    } else {
 
-      } else {
-
-        alert(data.error)
-
-      }
-
-    } catch (error) {
-
-      console.log(error)
-
-      alert('Something went wrong')
-
+      alert(data.error)
     }
-
-    setLoading(false)
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
 
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-10 rounded-3xl shadow-xl w-[400px]"
-      >
+    <div className="min-h-screen bg-gradient-to-br from-black via-slate-900 to-orange-950 flex items-center justify-center px-6">
 
-        <h1 className="text-4xl font-bold mb-8 text-center">
-          Login
+      <div className="bg-white/10 backdrop-blur-xl border border-white/10 p-12 rounded-[40px] shadow-2xl w-full max-w-md text-white">
+
+        <h1 className="text-5xl font-bold text-center mb-4">
+          Welcome Back
         </h1>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          className="w-full border p-3 rounded-lg mb-4"
-          onChange={handleChange}
-        />
+        <p className="text-center text-gray-300 mb-10">
+          Login to continue your travel journey
+        </p>
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          className="w-full border p-3 rounded-lg mb-6"
-          onChange={handleChange}
-        />
+        <form onSubmit={handleSubmit}>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg"
-        >
-          {loading ? 'Loading...' : 'Login'}
-        </button>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            className="w-full bg-white/10 border border-white/10 p-4 rounded-2xl mb-5 outline-none"
+            onChange={handleChange}
+          />
 
-      </form>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            className="w-full bg-white/10 border border-white/10 p-4 rounded-2xl mb-8 outline-none"
+            onChange={handleChange}
+          />
+
+          <button
+            type="submit"
+            className="w-full bg-orange-500 hover:bg-orange-600 py-4 rounded-2xl text-lg font-semibold transition"
+          >
+            Login
+          </button>
+
+        </form>
+
+      </div>
 
     </div>
   )

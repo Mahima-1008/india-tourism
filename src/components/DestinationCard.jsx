@@ -3,31 +3,38 @@ import Link from 'next/link'
 export default function DestinationCard({ destination }) {
 
   return (
-    <div className="bg-white rounded-3xl overflow-hidden shadow-lg">
+
+    <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-[35px] overflow-hidden shadow-2xl hover:scale-105 transition duration-500">
 
       <img
         src={destination.image}
         alt={destination.name}
-        className="h-60 w-full object-cover"
+        className="w-full h-72 object-cover"
       />
 
-      <div className="p-5">
+      <div className="p-6 text-white">
 
-        <h2 className="text-3xl font-bold mb-3">
+        <h1 className="text-4xl font-bold mb-4 text-orange-400">
+
           {destination.name}
-        </h2>
 
-        <p className="text-gray-600 mb-4">
+        </h1>
+
+        <p className="text-gray-300 text-lg mb-6">
+
           {destination.description}
+
         </p>
 
-        <h3 className="text-2xl font-bold text-orange-500 mb-4">
+        <p className="text-3xl font-bold mb-6 text-orange-500">
+
           ₹{destination.price}
-        </h3>
+
+        </p>
 
         <Link href={`/destination/${destination.id}`}>
 
-          <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full">
+          <button className="bg-orange-500 hover:bg-orange-600 px-8 py-3 rounded-full text-lg font-semibold transition">
 
             Explore
 
