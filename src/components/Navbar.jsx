@@ -1,50 +1,64 @@
 'use client'
 
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
 
 export default function Navbar() {
 
-  const router = useRouter()
+  const { theme, setTheme } = useTheme()
 
-  const logout = () => {
+  const [mounted, setMounted] = useState(false)
 
-    localStorage.removeItem('token')
+  useEffect(() => {
 
-    router.push('/login')
+    setMounted(true)
+
+  }, [])
+
+  if (!mounted) {
+
+    return null
   }
 
   return (
 
-    <nav className="flex items-center justify-between px-10 py-5 bg-black text-white">
+    <nav className="fixed top-0 w-full z-50 bg-white dark:bg-black border-b border-gray-200 dark:border-white/10 px-8 py-5 flex justify-between items-center transition-all duration-500">
 
-      <Link href="/" className="text-3xl font-bold">
-        Incredible India
+      <Link
+        href="/"
+        className="text-4xl font-bold text-orange-500"
+      >
+        India Tourism
       </Link>
 
-      <div className="flex gap-6 items-center">
+      <div className="flex items-center gap-10 text-lg font-semibold text-black dark:text-white">
 
-        <Link href="/">
-          Home
-        </Link>
+        <Link href="/">Home</Link>
 
-        <Link href="/dashboard">
-          Dashboard
-        </Link>
+        <Link href="/dashboard">Dashboard</Link>
 
-        <Link href="/bookings">
-          My Bookings
-        </Link>
+        <Link href="/bookings">Bookings</Link>
 
-        <Link href="/profile">
-          Profile
-        </Link>
+        <Link href="/wishlist">Wishlist</Link>
+
+        <Link href="/profile">Profile</Link>
+
+        <Link href="/admin">Admin</Link>
+
+        <Link href="/ai-planner">AI Planner</Link>
 
         <button
-          onClick={logout}
-          className="bg-orange-500 hover:bg-orange-600 px-5 py-2 rounded-full"
+          onClick={() =>
+            setTheme(theme === 'dark' ? 'light' : 'dark')
+          }
+          className="bg-orange-500 hover:bg-orange-600 px-6 py-3 rounded-full text-white transition"
         >
-          Logout
+
+          {theme === 'dark'
+            ? '☀ Light'
+            : '🌙 Dark'}
+
         </button>
 
       </div>

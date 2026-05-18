@@ -189,8 +189,7 @@ const destinations = {
 {
   id: 16,
   name: 'Darjeeling',
-  image:
-    'https://images.unsplash.com/photo-1521295121783-8a321d551ad2',
+  image: '/images/darjeeling.png',
   description:
     'Tea gardens, toy train, and Kanchenjunga views.',
   price: 19000,

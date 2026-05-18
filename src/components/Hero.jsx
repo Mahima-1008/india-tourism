@@ -1,48 +1,66 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 
 export default function Hero() {
 
   return (
+
     <section
-      className="h-screen bg-cover bg-center flex items-center justify-center text-white"
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da')",
-      }}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28"
     >
 
-      <div className="bg-black/50 p-10 rounded-3xl text-center">
+      {/* Background Image */}
+
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('/images/india-hero.png')",
+        }}
+      ></div>
+
+      {/* Dark Overlay */}
+
+      <div className="absolute inset-0 bg-black/40"></div>
+
+      {/* Content */}
+
+      <div className="relative z-10 text-center px-6 max-w-5xl">
 
         <motion.h1
-          initial={{ opacity: 0, y: -50 }}
+          initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-6xl font-bold mb-6"
+          className="text-6xl md:text-8xl font-bold text-white mb-8 drop-shadow-2xl"
         >
+
           Explore Incredible India
+
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="text-xl mb-6"
+          transition={{ delay: 0.4 }}
+          className="text-xl md:text-3xl text-gray-200 mb-10 leading-relaxed"
         >
-          Discover beaches, mountains, heritage, and culture.
+
+          Discover mountains, beaches, culture,
+          wildlife, heritage, spirituality,
+          festivals, and unforgettable adventures.
+
         </motion.p>
 
-        <Link href="#destinations">
+        <motion.a
+          href="#destinations"
+          whileHover={{ scale: 1.05 }}
+          className="inline-block bg-orange-500 hover:bg-orange-600 text-white px-10 py-5 rounded-full text-xl font-semibold transition-all duration-300 shadow-2xl"
+        >
 
-          <button className="bg-orange-500 hover:bg-orange-600 px-8 py-3 rounded-full text-lg font-semibold transition text-white">
+          Start Exploring
 
-            Start Exploring
-
-          </button>
-
-        </Link>
+        </motion.a>
 
       </div>
 

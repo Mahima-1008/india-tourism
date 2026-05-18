@@ -5,52 +5,46 @@ export default function PopularDestinations() {
 
   return (
 
-    <div className="bg-black text-white py-20 px-8">
+    <section
+      id="destinations"
+      className="bg-white dark:bg-black text-black dark:text-white py-24 px-8 transition-all duration-500"
+    >
 
-      <Section
-        title="Explore The Beauty Of North India"
-        places={destinations.northIndia}
-      />
+      <div className="max-w-7xl mx-auto">
 
-      <Section
-        title="Explore The Beauty Of South India"
-        places={destinations.southIndia}
-      />
+        <h1 className="text-6xl font-bold text-center text-orange-500 mb-20">
 
-      <Section
-        title="Explore The Beauty Of West India"
-        places={destinations.westIndia}
-      />
+          Explore India
 
-      <Section
-        title="Explore The Beauty Of East India"
-        places={destinations.eastIndia}
-      />
+        </h1>
 
-    </div>
-  )
-}
+        {Object.entries(destinations).map(
+          ([region, places]) => (
 
-function Section({ title, places }) {
+            <div key={region} className="mb-24">
 
-  return (
+              <h2 className="text-5xl font-bold mb-12 capitalize">
 
-    <section className="mb-28">
+                {region.replace('India', ' India')}
 
-      <h1 className="text-5xl font-bold mb-14 text-orange-400 text-center">
-        {title}
-      </h1>
+              </h2>
 
-      <div className="grid md:grid-cols-3 gap-10">
+              <div className="grid md:grid-cols-3 gap-10">
 
-        {places.map((destination) => (
+                {places.map((destination) => (
 
-          <DestinationCard
-            key={destination.id}
-            destination={destination}
-          />
+                  <DestinationCard
+                    key={destination.id}
+                    destination={destination}
+                  />
 
-        ))}
+                ))}
+
+              </div>
+
+            </div>
+          )
+        )}
 
       </div>
 

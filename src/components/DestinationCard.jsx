@@ -1,10 +1,42 @@
+'use client'
+
 import Link from 'next/link'
 
 export default function DestinationCard({ destination }) {
 
+  const addToWishlist = () => {
+
+    const existingWishlist =
+      JSON.parse(localStorage.getItem('wishlist')) || []
+
+    const alreadyExists =
+      existingWishlist.find(
+        (item) => item.id === destination.id
+      )
+
+    if (alreadyExists) {
+
+      alert('Already added to wishlist')
+
+      return
+    }
+
+    const updatedWishlist = [
+      ...existingWishlist,
+      destination,
+    ]
+
+    localStorage.setItem(
+      'wishlist',
+      JSON.stringify(updatedWishlist)
+    )
+
+    alert('Added to wishlist ❤️')
+  }
+
   return (
 
-    <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-[35px] overflow-hidden shadow-2xl hover:scale-105 transition duration-500">
+    <div className="bg-gray-100 dark:bg-white/10 border border-gray-300 dark:border-white/10 rounded-[35px] overflow-hidden shadow-2xl hover:scale-105 transition duration-500">
 
       <img
         src={destination.image}
@@ -12,15 +44,15 @@ export default function DestinationCard({ destination }) {
         className="w-full h-72 object-cover"
       />
 
-      <div className="p-6 text-white">
+      <div className="p-6 text-black dark:text-white">
 
-        <h1 className="text-4xl font-bold mb-4 text-orange-400">
+        <h1 className="text-4xl font-bold mb-4 text-orange-500">
 
           {destination.name}
 
         </h1>
 
-        <p className="text-gray-300 text-lg mb-6">
+        <p className="text-gray-700 dark:text-gray-300 text-lg mb-6">
 
           {destination.description}
 
@@ -32,15 +64,28 @@ export default function DestinationCard({ destination }) {
 
         </p>
 
-        <Link href={`/destination/${destination.id}`}>
+        <div className="flex gap-4">
 
-          <button className="bg-orange-500 hover:bg-orange-600 px-8 py-3 rounded-full text-lg font-semibold transition">
+          <Link href={`/destination/${destination.id}`}>
 
-            Explore
+            <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full text-lg font-semibold transition">
+
+              Explore
+
+            </button>
+
+          </Link>
+
+          <button
+            onClick={addToWishlist}
+            className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-full text-lg font-semibold transition"
+          >
+
+            ❤️
 
           </button>
 
-        </Link>
+        </div>
 
       </div>
 

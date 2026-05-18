@@ -9,60 +9,86 @@ export default function BookingsPage() {
 
   useEffect(() => {
 
-    fetchBookings()
+    const savedBookings =
+      JSON.parse(localStorage.getItem('bookings')) || []
+
+    setBookings(savedBookings)
 
   }, [])
 
-  const fetchBookings = async () => {
-
-    const res = await fetch('/api/bookings/all')
-
-    const data = await res.json()
-
-    setBookings(data)
-  }
-
   return (
 
-    <div className="min-h-screen bg-gradient-to-br from-black to-slate-900 text-white">
+    <main className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-all duration-500">
 
       <Navbar />
 
-      <div className="pt-32 px-10">
+      <div className="pt-36 px-8 max-w-7xl mx-auto">
 
-        <h1 className="text-6xl font-bold mb-12">
+        <h1 className="text-6xl font-bold text-orange-500 mb-12">
+
           My Bookings
+
         </h1>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        {bookings.length === 0 ? (
 
-          {bookings.map((booking) => (
+          <div className="bg-gray-100 dark:bg-white/10 p-10 rounded-[35px]">
 
-            <div
-              key={booking._id}
-              className="bg-white/10 backdrop-blur-lg border border-white/10 p-8 rounded-[35px] shadow-2xl"
-            >
+            <p className="text-2xl text-gray-600 dark:text-gray-300">
 
-              <h2 className="text-4xl font-bold mb-5">
-                {booking.destinationName}
-              </h2>
+              No bookings yet.
 
-              <p className="text-xl text-gray-300 mb-4">
-                {booking.userEmail}
-              </p>
+            </p>
 
-              <p className="text-3xl font-bold text-orange-400">
-                ₹{booking.price}
-              </p>
+          </div>
 
-            </div>
+        ) : (
 
-          ))}
+          <div className="grid md:grid-cols-3 gap-10">
 
-        </div>
+            {bookings.map((booking, index) => (
+
+              <div
+                key={index}
+                className="bg-gray-100 dark:bg-white/10 border border-gray-300 dark:border-white/10 rounded-[35px] overflow-hidden shadow-2xl"
+              >
+
+                <img
+                  src={booking.image}
+                  alt={booking.name}
+                  className="w-full h-72 object-cover"
+                />
+
+                <div className="p-6">
+
+                  <h2 className="text-4xl font-bold text-orange-500 mb-4">
+
+                    {booking.name}
+
+                  </h2>
+
+                  <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
+
+                    {booking.description}
+
+                  </p>
+
+                  <p className="text-3xl font-bold text-orange-500">
+
+                    ₹{booking.price}
+
+                  </p>
+
+                </div>
+
+              </div>
+            ))}
+
+          </div>
+        )}
 
       </div>
 
-    </div>
+    </main>
   )
 }

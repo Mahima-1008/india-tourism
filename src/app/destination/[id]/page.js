@@ -1,54 +1,75 @@
 import destinations from '@/data/destinations'
+import Navbar from '@/components/Navbar'
+import Reviews from '@/components/Reviews'
 
 export default async function DestinationPage({ params }) {
 
-  const { id } = await params
+  const resolvedParams = await params
 
-  const allDestinations = [
-    ...destinations.northIndia,
-    ...destinations.southIndia,
-    ...destinations.westIndia,
-    ...destinations.eastIndia,
-  ]
-
-  const destination = allDestinations.find(
-    (item) => item.id == id
-  )
+  const destination = Object.values(destinations)
+    .flat()
+    .find(
+      (item) => item.id == resolvedParams.id
+    )
 
   if (!destination) {
-    return <h1 className="text-white p-10">Destination Not Found</h1>
+
+    return (
+
+      <div className="min-h-screen flex items-center justify-center text-4xl font-bold">
+
+        Destination Not Found
+
+      </div>
+    )
   }
 
   return (
 
-    <div className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-all duration-500">
 
-      <img
-        src={destination.image}
-        alt={destination.name}
-        className="w-full h-[500px] object-cover"
-      />
+      <Navbar />
 
-      <div className="p-10">
+      <div className="pt-36 px-10 max-w-7xl mx-auto">
 
-        <h1 className="text-6xl font-bold text-orange-400 mb-6">
-          {destination.name}
-        </h1>
+        <img
+          src={destination.image}
+          alt={destination.name}
+          className="w-full h-[500px] object-cover rounded-[40px] shadow-2xl"
+        />
 
-        <p className="text-2xl text-gray-300 mb-6 max-w-4xl">
-          {destination.description}
-        </p>
+        <div className="mt-10">
 
-        <p className="text-4xl font-bold text-orange-500 mb-8">
-          ₹{destination.price}
-        </p>
+          <h1 className="text-7xl font-bold text-orange-500 mb-6">
 
-        <button className="bg-orange-500 hover:bg-orange-600 px-10 py-4 rounded-full text-xl font-semibold transition">
-          Book Now
-        </button>
+            {destination.name}
+
+          </h1>
+
+          <p className="text-2xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+
+            {destination.description}
+
+          </p>
+
+          <p className="text-5xl font-bold text-orange-500 mb-10">
+
+            ₹{destination.price}
+
+          </p>
+
+          <button className="bg-orange-500 hover:bg-orange-600 px-10 py-4 rounded-full text-white text-xl font-semibold transition">
+
+            Book Now
+
+          </button>
+
+        </div>
+
+        <Reviews destinationId={destination.id} />
 
       </div>
 
-    </div>
+    </main>
   )
 }
