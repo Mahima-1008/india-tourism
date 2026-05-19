@@ -1,27 +1,51 @@
-import destinations from '@/data/destinations'
+'use client'
+
+import { useParams } from 'next/navigation'
 import Navbar from '@/components/Navbar'
+import destinations from '@/data/destinations'
 import Reviews from '@/components/Reviews'
 
-export default async function DestinationPage({ params }) {
+export default function DestinationPage() {
 
-  const resolvedParams = await params
+  const params = useParams()
 
-  const destination = Object.values(destinations)
-    .flat()
-    .find(
-      (item) => item.id == resolvedParams.id
-    )
+  const allDestinations = Object.values(destinations).flat()
+
+  const destination = allDestinations.find(
+    (item) => item.id == params.id
+  )
 
   if (!destination) {
 
     return (
 
-      <div className="min-h-screen flex items-center justify-center text-4xl font-bold">
+      <main className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
 
-        Destination Not Found
+        <Navbar />
 
-      </div>
+        <div className="pt-40 text-center text-5xl font-bold">
+
+          Destination Not Found
+
+        </div>
+
+      </main>
     )
+  }
+
+  const handleBooking = () => {
+
+    const existingBookings =
+      JSON.parse(localStorage.getItem('bookings')) || []
+
+    existingBookings.push(destination)
+
+    localStorage.setItem(
+      'bookings',
+      JSON.stringify(existingBookings)
+    )
+
+    alert('Booking Successful ✨')
   }
 
   return (
@@ -30,12 +54,12 @@ export default async function DestinationPage({ params }) {
 
       <Navbar />
 
-      <div className="pt-36 px-10 max-w-7xl mx-auto">
+      <div className="pt-32 max-w-7xl mx-auto px-8">
 
         <img
           src={destination.image}
           alt={destination.name}
-          className="w-full h-[500px] object-cover rounded-[40px] shadow-2xl"
+          className="w-full h-[500px] object-cover rounded-[40px]"
         />
 
         <div className="mt-10">
@@ -58,7 +82,10 @@ export default async function DestinationPage({ params }) {
 
           </p>
 
-          <button className="bg-orange-500 hover:bg-orange-600 px-10 py-4 rounded-full text-white text-xl font-semibold transition">
+          <button
+            onClick={handleBooking}
+            className="bg-orange-500 hover:bg-orange-600 px-10 py-5 rounded-full text-white text-2xl font-semibold transition"
+          >
 
             Book Now
 
