@@ -1,88 +1,102 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import Navbar from '@/components/Navbar'
 
 export default function BookingPage() {
 
-  const searchParams = useSearchParams()
+  const [bookings, setBookings] = useState([])
 
-  const destination = searchParams.get('destination')
+  useEffect(() => {
 
-  const price = searchParams.get('price')
+    const savedBookings =
+      JSON.parse(localStorage.getItem('bookings')) || []
 
-  const [email, setEmail] = useState('')
+    setBookings(savedBookings)
 
-  const handleBooking = async () => {
-
-    const res = await fetch('/api/bookings/create', {
-      method: 'POST',
-
-      headers: {
-        'Content-Type': 'application/json',
-      },
-
-      body: JSON.stringify({
-        destinationName: destination,
-        price,
-        userEmail: email,
-      }),
-    })
-
-    const data = await res.json()
-
-    alert(data.message)
-  }
+  }, [])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
 
-      <div className="bg-white p-10 rounded-3xl shadow-xl w-[500px]">
+    <main className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-all duration-500">
 
-        <h1 className="text-4xl font-bold mb-8">
-          Book Your Trip
+      <Navbar />
+
+      <div className="pt-36 px-8 max-w-7xl mx-auto">
+
+        <h1 className="text-6xl font-bold text-orange-500 mb-10">
+
+          My Bookings
+
         </h1>
 
-        <div className="mb-5">
+        {bookings.length === 0 ? (
 
-          <p className="text-xl mb-2">
-            Destination:
-          </p>
+          <div className="bg-gray-100 dark:bg-white/10 p-10 rounded-[35px] text-center">
 
-          <h2 className="text-3xl font-bold">
-            {destination}
-          </h2>
+            <h2 className="text-3xl mb-4">
 
-        </div>
+              No bookings yet ✈️
 
-        <div className="mb-5">
+            </h2>
 
-          <p className="text-xl mb-2">
-            Price:
-          </p>
+            <p className="text-gray-600 dark:text-gray-300">
 
-          <h2 className="text-3xl font-bold text-orange-500">
-            ₹{price}
-          </h2>
+              Start exploring India and book your dream destination.
 
-        </div>
+            </p>
 
-        <input
-          type="email"
-          placeholder="Enter your email"
-          className="w-full border p-3 rounded-lg mb-6"
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          </div>
 
-        <button
-          onClick={handleBooking}
-          className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-lg"
-        >
-          Confirm Booking
-        </button>
+        ) : (
+
+          <div className="grid md:grid-cols-3 gap-8">
+
+            {bookings.map((item) => (
+
+              <div
+                key={item.id}
+                className="bg-gray-100 dark:bg-white/10 rounded-[35px] overflow-hidden shadow-xl"
+              >
+
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-64 object-cover"
+                />
+
+                <div className="p-6">
+
+                  <h2 className="text-3xl font-bold text-orange-500 mb-4">
+
+                    {item.name}
+
+                  </h2>
+
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+
+                    {item.description}
+
+                  </p>
+
+                  <p className="text-2xl font-bold">
+
+                    ₹{item.price}
+
+                  </p>
+
+                </div>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        )}
 
       </div>
 
-    </div>
+    </main>
   )
 }
