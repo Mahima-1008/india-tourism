@@ -41,10 +41,10 @@ export default function DestinationCard({ destination }) {
       <img
         src={destination.image}
         alt={destination.name}
-        className="w-full h-72 object-cover"
+        className="w-full h-[500px] object-cover object-center"
       />
 
-      <div className="p-6 text-black dark:text-white">
+      <div className="p-8 text-black dark:text-white">
 
         <h1 className="text-4xl font-bold mb-4 text-orange-500">
 
@@ -58,7 +58,7 @@ export default function DestinationCard({ destination }) {
 
         </p>
 
-        <p className="text-3xl font-bold mb-6 text-orange-500">
+        <p className="text-3xl font-bold mb-8 text-orange-500">
 
           ₹{destination.price}
 

@@ -145,7 +145,7 @@ export default function PopularDestinations() {
 
                 </h2>
 
-                <div className="grid md:grid-cols-3 gap-10">
+                <div className="grid md:grid-cols-2 gap-12">
 
                   {filteredPlaces.map(
                     (destination) => (

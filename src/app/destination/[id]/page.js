@@ -59,7 +59,7 @@ export default function DestinationPage() {
         <img
           src={destination.image}
           alt={destination.name}
-          className="w-full h-[500px] object-cover rounded-[40px]"
+          className="w-full max-h-[700px] object-contain bg-black rounded-[30px]"
         />
 
         <div className="mt-10">

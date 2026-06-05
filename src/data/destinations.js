@@ -6,7 +6,7 @@ const destinations = {
       id: 1,
       name: 'Manali',
       image:
-        'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23',
+        '/images/manali.jpg',
       description:
         'Enjoy snow mountains, rivers, cafes, and adventure sports.',
       price: 18000,
@@ -18,7 +18,7 @@ const destinations = {
       id: 2,
       name: 'Kashmir',
       image:
-        'https://images.unsplash.com/photo-1598091383021-15ddea10925d',
+        '/images/kashmir.jpg',
       description:
         'Experience Dal Lake, snow peaks, valleys, and paradise views.',
       price: 25000,
@@ -30,7 +30,7 @@ const destinations = {
       id: 3,
       name: 'Ladakh',
       image:
-        'https://images.unsplash.com/photo-1612438214708-f428a707dd24',
+        '/images/ladakh.jpg',
       description:
         'Bike rides, monasteries, mountains, and breathtaking roads.',
       price: 30000,
@@ -42,7 +42,7 @@ const destinations = {
       id: 4,
       name: 'Shimla',
       image:
-        'https://images.unsplash.com/photo-1622308644420-b20142dc993c',
+        '/images/shimla.jpg',
       description:
         'Colonial beauty, toy train, hills, and snowfall views.',
       price: 16000,
@@ -54,7 +54,7 @@ const destinations = {
       id: 5,
       name: 'Rishikesh',
       image:
-        'https://images.unsplash.com/photo-1627894483216-2138af692e32',
+        '/images/rishikesh.jpg',
       description:
         'River rafting, yoga, temples, and Himalayan beauty.',
       price: 14000,
@@ -66,7 +66,7 @@ const destinations = {
       id: 21,
       name: 'Agra',
       image:
-        'https://images.unsplash.com/photo-1564507592333-c60657eea523',
+        '/images/agra.jpg',
       description:
         'Visit the iconic Taj Mahal and Mughal architecture.',
       price: 14000,
@@ -78,7 +78,7 @@ const destinations = {
       id: 22,
       name: 'Delhi',
       image:
-        'https://images.unsplash.com/photo-1587474260584-136574528ed5',
+        '/images/delhi.jpg',
       description:
         'Explore India Gate, Red Fort, markets, and vibrant city life.',
       price: 15000,
@@ -94,7 +94,7 @@ const destinations = {
       id: 6,
       name: 'Goa',
       image:
-        'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2',
+        '/images/goa.jpg',
       description:
         'Beautiful beaches, nightlife, water sports, and parties.',
       price: 12000,
@@ -106,7 +106,7 @@ const destinations = {
       id: 7,
       name: 'Kerala',
       image:
-        'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944',
+        '/images/kerala.jpg',
       description:
         'Backwaters, tea gardens, houseboats, and nature.',
       price: 22000,
@@ -118,7 +118,7 @@ const destinations = {
       id: 8,
       name: 'Ooty',
       image:
-        'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
+        '/images/ooty.jpg',
       description:
         'Tea plantations, cool weather, lakes, and hills.',
       price: 17000,
@@ -130,7 +130,7 @@ const destinations = {
       id: 9,
       name: 'Coorg',
       image:
-        'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
+        '/images/coorg.jpg',
       description:
         'Coffee plantations, waterfalls, and scenic valleys.',
       price: 18000,
@@ -142,7 +142,7 @@ const destinations = {
       id: 10,
       name: 'Kanyakumari',
       image:
-        'https://images.unsplash.com/photo-1593693397690-362cb9666fc2',
+        '/images/kanyakumari.jpg',
       description:
         'Sunrise views, Vivekananda Rock, and ocean beauty.',
       price: 15000,
@@ -158,7 +158,7 @@ const destinations = {
       id: 23,
       name: 'Mumbai',
       image:
-        'https://images.unsplash.com/photo-1570168007204-dfb528c6958f',
+        '/images/mumbai.jpg',
       description:
         'Visit Gateway of India, Marine Drive, Bollywood, and nightlife.',
       price: 20000,
@@ -170,7 +170,7 @@ const destinations = {
       id: 11,
       name: 'Jaipur',
       image:
-        'https://images.unsplash.com/photo-1477587458883-47145ed94245',
+        '/images/jaipur.jpg',
       description:
         'Royal forts, palaces, colorful markets, and culture.',
       price: 15000,
@@ -182,7 +182,7 @@ const destinations = {
       id: 12,
       name: 'Udaipur',
       image:
-        'https://images.unsplash.com/photo-1599661046289-e31897846e41',
+        '/images/udaipur.jpg',
       description:
         'Lakes, palaces, luxury hotels, and royal heritage.',
       price: 17000,
@@ -194,7 +194,7 @@ const destinations = {
       id: 13,
       name: 'Mount Abu',
       image:
-        'https://images.unsplash.com/photo-1501785888041-af3ef285b470',
+        '/images/mount abu.jpg',
       description:
         'Hill station beauty, Nakki Lake, and peaceful views.',
       price: 13000,
@@ -206,7 +206,7 @@ const destinations = {
       id: 14,
       name: 'Kutch',
       image:
-        'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee',
+        '/images/kutch.jpg',
       description:
         'White desert, Rann festival, and cultural beauty.',
       price: 21000,
@@ -218,7 +218,7 @@ const destinations = {
       id: 15,
       name: 'Mahabaleshwar',
       image:
-        'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee',
+        '/images/mahabaleshwar.jpg',
       description:
         'Strawberry farms, hills, lakes, and cool weather.',
       price: 16000,
@@ -233,7 +233,7 @@ const destinations = {
     {
       id: 16,
       name: 'Darjeeling',
-      image: '/images/darjeeling.png',
+      image: '/images/darjeeling.jpg',
       description:
         'Tea gardens, toy train, and Kanchenjunga views.',
       price: 19000,
@@ -245,7 +245,7 @@ const destinations = {
       id: 17,
       name: 'Gangtok',
       image:
-        'https://images.unsplash.com/photo-1516483638261-f4dbaf036963',
+        '/images/gangtok.jpg',
       description:
         'Monasteries, mountains, lakes, and adventure.',
       price: 22000,
@@ -257,7 +257,7 @@ const destinations = {
       id: 18,
       name: 'Puri',
       image:
-        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
+        '/images/puri.jpg',
       description:
         'Jagannath temple, beaches, and spiritual beauty.',
       price: 12000,
@@ -269,7 +269,7 @@ const destinations = {
       id: 19,
       name: 'Shillong',
       image:
-        'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee',
+        '/images/shillong.jpg',
       description:
         'Waterfalls, hills, clouds, and greenery.',
       price: 20000,
@@ -281,7 +281,7 @@ const destinations = {
       id: 20,
       name: 'Kaziranga',
       image:
-        'https://images.unsplash.com/photo-1516426122078-c23e76319801',
+        '/images/kaziranga.jpg',
       description:
         'Wildlife safari, rhinos, forests, and nature.',
       price: 24000,
